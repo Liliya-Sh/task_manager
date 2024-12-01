@@ -22,7 +22,7 @@
 
 Скачать программу:
 
-    https://github.com/Liliya-Sh/task_manager.git
+    git clone https://github.com/Liliya-Sh/task_manager.git
 
 Перейти в директорию task_manager. Запустить программу PyCharm или в консоли:
 

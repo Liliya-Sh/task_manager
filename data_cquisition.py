@@ -78,10 +78,10 @@ class ReceivedData:
             try:
                 status = int(input("Укажите какой статус присвоить задаче(не выполнена - 1, выполнена - 2):"))
                 if status == 1:
-                    status_book = 'не выполнена'
+                    status_book = 'Не выполнена'
                     return status_book
                 elif status == 2:
-                    status_book = 'выполнена'
+                    status_book = 'Выполнена'
                     return status_book
                 else:
                     print('Пожалуйста, укажите 1 или 2.')
