@@ -1,14 +1,13 @@
 import unittest
 
-
-from app import ManagerTasks
+from services import TaskService
 
 
 class TestTasksManager(unittest.TestCase):
     """Тесты на для проверки работы функций"""
 
     def setUp(self) -> None:
-        self.manager_task = ManagerTasks()
+        self.manager_task = TaskService()
 
     def tearDown(self):
         pass
@@ -24,8 +23,8 @@ class TestTasksManager(unittest.TestCase):
                     '\nСтатус: Не выполнена'
                     )
 
-        actual_result = ManagerTasks().add_task('День рождение', 'Поздравить подругу', 'Личное',
-                                                '2024-11-05', 'Средний')
+        actual_result = self.manager_task.add_task('День рождение', 'Поздравить подругу',
+                                                   'Личное', '2024-11-05', 'Средний')
         self.assertEqual(actual_result, new_task)
 
     def test_search_task_category(self):
@@ -38,10 +37,10 @@ class TestTasksManager(unittest.TestCase):
                 '\nПриоритет: Средний'
                 '\nСтатус: Не выполнена')
 
-        actual_result = self.manager_task.search_task(1, 'личное')
+        actual_result = self.manager_task.search_task('личное')
         self.assertEqual(actual_result, task)
 
-    def test_search_book_status(self):
+    def test_search_task_status(self):
         """Тестируем функцию search_task(поиск задачи по статусу)"""
         task = ('\nID: 1'
                 '\nНазвание: Изучить основы FastAPI'
@@ -58,10 +57,10 @@ class TestTasksManager(unittest.TestCase):
                 '\nПриоритет: Средний'
                 '\nСтатус: Не выполнена')
 
-        actual_result = self.manager_task.search_task(2, 'не выполнена')
+        actual_result = self.manager_task.search_task('не выполнена')
         self.assertEqual(actual_result, task)
 
-    def test_search_book_word(self):
+    def test_search_task_word(self):
         """Тестируем функцию search_task(поиск задачи по ключевому слову)"""
         task = ('\nID: 1'
                 '\nНазвание: Изучить основы FastAPI'
@@ -71,14 +70,14 @@ class TestTasksManager(unittest.TestCase):
                 '\nПриоритет: Высокий'
                 '\nСтатус: Не выполнена')
 
-        actual_result = self.manager_task.search_task(3, 'FastAPI')
+        actual_result = self.manager_task.search_task('FastAPI')
         self.assertEqual(actual_result, task)
 
     def test_delete_task(self):
         """Тестируем функцию delete_task(удаляет задачу по ID)"""
         del_task = 'Задача с ID 2 была удалена.'
 
-        actual_result = ManagerTasks().delete_task(2)
+        actual_result = self.manager_task.delete_task(2)
         self.assertEqual(actual_result, del_task)
 
 
